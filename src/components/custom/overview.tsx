@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, BotIcon } from 'lucide-react';
-import logo from '../../../orion_logo.png';
+import logo from '../../../logo_orion.svg';
 
 export const Overview = () => {
   return (
