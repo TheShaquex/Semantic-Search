@@ -15,7 +15,7 @@ export const Overview = () => {
     >
       <div className="rounded-xl p-6 flex flex-col gap-8 leading-relaxed text-center max-w-xl">
         <p className="flex flex-row justify-center gap-4 items-center">
-          <img src={logo} alt="Orion search logo" /> {/*TODO: Change image*/}
+          <img src={logo} alt="Orion search logo" />
         </p>
         <p>
           Welcome to <strong>Orion Search</strong><br />
