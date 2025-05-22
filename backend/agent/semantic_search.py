@@ -16,9 +16,12 @@ def search_similar_products(query: str, top_k=5):
     suggestions = []
     for doc, meta in zip(results['documents'][0], results['metadatas'][0]):
         suggestions.append({
-            "title": meta.get('title', 'N/A'),
-            "category": meta.get('category', 'N/A'),
-            "description": doc
+            "product_name": meta.get("product_name", "N/A"),
+            "category": meta.get("category", "N/A"),
+            "actual_price": meta.get("actual_price", "N/A"),
+            "img_link": meta.get("img_link", ""),
+            "chunk_index": meta.get("chunk_index", "N/A"),
+            "description_chunk": doc
         })
 
     return suggestions

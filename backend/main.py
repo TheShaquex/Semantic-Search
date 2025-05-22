@@ -28,18 +28,19 @@ async def search(query: QueryRequest):
 
     # Combine for prompt
     product_info = "\n".join(
-        f"{s['title']} ({s['category']}): {s['description']}" for s in semantic_results
+        f"{s['product_name']} ({s['category']}) - ${s['actual_price']}: {s['description_chunk']}\nImage: {s['img_link']}"
+        for s in semantic_results
     )
     full_prompt = f"""You are an expert assistant. Based on both product data and web results, answer the question:
 
-Product Info:
-{product_info}
+    Product Info:
+    {product_info}
 
-Web Results:
-{web_snippets}
+    Web Results:
+    {web_snippets}
 
-User Question: {user_question}
-Answer:"""
+    User Question: {user_question}
+    Answer:"""
 
     response = query_llm(full_prompt, model=model)
     return {"result": response}
