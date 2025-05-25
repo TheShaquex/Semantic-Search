@@ -1,5 +1,6 @@
-export interface message{
-    content:string;
-    role:string;
-    id:string;
-}
+export interface message {
+    id: string;
+    role: 'user' | 'assistant';
+    content: string;
+    images?: string[];
+  }

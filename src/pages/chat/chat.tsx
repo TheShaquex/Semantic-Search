@@ -35,6 +35,7 @@ export function Chat() {
         content: response.data.result,
         role: "assistant",
         id: uuidv4(),
+        images: response.data.images || [],
       };
 
       setMessages((prev) => [...prev, botMessage]);

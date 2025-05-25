@@ -7,7 +7,6 @@ import { message } from "../../interfaces/interfaces"
 import { MessageActions } from '@/components/custom/actions';
 
 export const PreviewMessage = ({ message }: { message: message; }) => {
-
   return (
     <motion.div
       className="w-full mx-auto max-w-3xl px-4 group/message"
@@ -30,6 +29,19 @@ export const PreviewMessage = ({ message }: { message: message; }) => {
           {message.content && (
             <div className="flex flex-col gap-4 text-left">
               <Markdown>{message.content}</Markdown>
+            </div>
+          )}
+
+          {message.images && message.images.length > 0 && (
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              {message.images.map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt={`Image ${i + 1}`}
+                  className="rounded-md border border-gray-700"
+                />
+              ))}
             </div>
           )}
 

@@ -20,13 +20,9 @@ async def search(query: QueryRequest):
     user_question = query.user_input
     model = query.model
 
-    # Semantic DB results
     semantic_results = search_similar_products(user_question)
-
-    # Web search
     web_snippets = search_google_serpapi(user_question)
 
-    # Combine for prompt
     product_info = "\n".join(
         f"{s['product_name']} ({s['category']}) - ${s['actual_price']}: {s['description_chunk']}\nImage: {s['img_link']}"
         for s in semantic_results
@@ -43,4 +39,10 @@ async def search(query: QueryRequest):
     Answer:"""
 
     response = query_llm(full_prompt, model=model)
-    return {"result": response}
+    
+    # Send back both result text and image links
+    image_links = [s['img_link'] for s in semantic_results if s['img_link']]
+    return {
+        "result": response,
+        "images": image_links
+    }
